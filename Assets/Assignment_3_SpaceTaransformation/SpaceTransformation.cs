@@ -5,23 +5,33 @@ using UnityEngine;
 public class SpaceTransformation : MonoBehaviour
 {
     [SerializeField] Transform _point;
-    [SerializeField] Vector2 _pos;
-    [SerializeField] Vector2 _rot;
 
-    [SerializeField] float _localX;
-    [SerializeField] float _localY;
+    [SerializeField] Vector2 _localPos;
+
+    [SerializeField] Vector2 _globalPos;
 
     void OnDrawGizmos()
     {
         if(_point == null) return;
+        
+        GlobalToLocal();
+        
+        void GlobalToLocal()
+        {
+            Vector2 offsetInWorldSpace = _point.position - transform.position;
+            float localX = Vector2.Dot(transform.right, offsetInWorldSpace);
+            float localY = Vector2.Dot(transform.up, offsetInWorldSpace);
+            
+            _localPos = new Vector2(localX, localY);
+        }
 
-        Vector2 pointPos = new Vector2(_point.position.x, _point.position.y);
-        pointPos -= new Vector2(transform.position.x, transform.position.y);
+        LocalToGlobal();
 
-        Vector2 r = transform.right;
-        _localX = Vector2.Dot(r, pointPos);
+        void LocalToGlobal()
+        {
+            _globalPos = transform.right * _localPos.x + transform.up * _localPos.y;
 
-        Vector2 u = transform.up;
-        _localY = Vector2.Dot(u, pointPos);
+            _globalPos = (Vector2)transform.position + _globalPos;
+        }
     }
 }
