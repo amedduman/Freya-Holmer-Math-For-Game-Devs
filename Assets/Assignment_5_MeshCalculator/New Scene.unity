@@ -236,7 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630e56f3004694ee89ebf744185fbbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  _area: 6.2503963
 --- !u!4 &904442502
 Transform:
   m_ObjectHideFlags: 0
