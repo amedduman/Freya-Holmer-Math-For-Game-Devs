@@ -330,7 +330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fe7bd53d45747738cddd44328c1128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointCount: 25
+  _pointCount: 6
+  _density: 2
+  _drawMode: 1
 --- !u!4 &1901744531
 Transform:
   m_ObjectHideFlags: 0
