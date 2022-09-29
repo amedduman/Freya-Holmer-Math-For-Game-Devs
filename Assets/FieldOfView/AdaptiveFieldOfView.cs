@@ -17,7 +17,7 @@ public class AdaptiveFieldOfView : MonoBehaviour
             objects[i] = _object.transform.GetChild(i).gameObject;
         }
 
-        Bounds bound = new Bounds(Vector3.zero, Vector3.zero);
+        Bounds bound = new Bounds(_object.position, Vector3.zero);
         foreach (var obj in objects)
         {
             bound.Encapsulate(obj.transform.position);
@@ -29,9 +29,9 @@ public class AdaptiveFieldOfView : MonoBehaviour
 
 
         float a = Vector3.Distance(bound.center, transform.position);
-        float o = bound.extents.x;
+        float o = bound.extents.y;
         float angle = Mathf.Atan(o/a);
 
-        Camera.main.fieldOfView = angle * 2;
+        Camera.main.fieldOfView = angle * 2 * Mathf.Rad2Deg;
     }
 }

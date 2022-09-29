@@ -44,27 +44,18 @@ public class PointsAroundCircle : MonoBehaviour
         void DrawPentagons()
         {
             Gizmos.color = Color.white;
-            for (int i = 0; i < points.Length - 1; i++)
+            for (int i = 0; i < points.Length; i++)
             {
-                Gizmos.DrawLine(points[i], points[i + 1]);
+                Gizmos.DrawLine(points[i], points[(i + 1) % _pointCount]);
             }
-            Gizmos.DrawLine(points[points.Length - 1], points[0]);
         }
 
         void DrawPentagrams()
         {
             Gizmos.color = Color.white;
-            for (int i = 0; i < points.Length - _density; i++)
+            for (int i = 0; i < points.Length; i++)
             {
-                Gizmos.DrawLine(points[i], points[i + _density]);
-            }
-            for (int j = _density; j > 0; j--)
-            {
-                if(j == _density)
-                {
-                    Gizmos.DrawLine(points[points.Length - j], points[0]);
-                }
-                Gizmos.DrawLine(points[points.Length - j], points[j]);
+                Gizmos.DrawLine(points[i], points[(i + _density) % _pointCount]);
             }
         }
     }
@@ -75,15 +66,3 @@ public class PointsAroundCircle : MonoBehaviour
         Pentagram
     }
 }
-
-
-// void DrawPentagrams()
-// {
-//     Gizmos.color = Color.white;
-//     for (int i = 0; i < points.Length - 2; i++)
-//     {
-//         Gizmos.DrawLine(points[i], points[i + 2]);
-//     }
-//     Gizmos.DrawLine(points[points.Length - 2], points[0]);
-//     Gizmos.DrawLine(points[points.Length - 1], points[1]);
-// }
